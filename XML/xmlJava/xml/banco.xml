@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<banco xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:noNamespaceSchemaLocation="banco.xsd">
+<cuenta>
+  <nro_cuenta>121</nro_cuenta>
+  <sucursal> Centro </sucursal>
+  <saldo>200</saldo>
+</cuenta>
+
+<cuenta>
+  <nro_cuenta>123</nro_cuenta>
+  <sucursal>Centro</sucursal>
+  <saldo>22323</saldo>
+</cuenta>
+
+
+
+<cliente>
+  <nombre_cliente>Jorge</nombre_cliente>
+  <calle> Montana </calle>
+  <ciudad> Cordoba </ciudad>
+</cliente>
+<cliente>
+  <nombre_cliente>carlos</nombre_cliente>
+  <calle> Laguna blanca </calle>
+  <ciudad> Cordoba </ciudad>
+</cliente>
+<titular>
+  <nro_cuenta>121</nro_cuenta>
+  <nombre_cliente>carlos</nombre_cliente>
+</titular>
+</banco>

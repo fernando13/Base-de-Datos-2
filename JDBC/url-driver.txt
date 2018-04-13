@@ -1,0 +1,11 @@
+MySQL
+driver = "org.gjt.mm.mysql.Driver"
+url = "jdbc:mysql://localhost/schema"
+
+Postgres
+driver = "org.postgresql.Driver"
+url = "jdbc:postgresql://localhost:5432/postgres"
+
+Oracle
+driver = "oracle.jdbc.driver.OracleDriver"
+url = "jdbc:oracle:thin:@//localhost:1521/XE"

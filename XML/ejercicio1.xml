@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ejercicio1 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:noNamespaceSchemaLocation="ejercicio1.xsd">
+
+
+<persona>
+  <dni>38019972</dni>
+  <nombre_apellido> Fernando Bentolila </nombre_apellido>
+  <fecha_nacimiento>1994-12-13</fecha_nacimiento>
+  <direccion>Mitre 412</direccion>
+  <telefono>3584402066</telefono>
+  <puntos_carnet>40</puntos_carnet>
+</persona>
+
+<persona>
+  <dni>40897842</dni>
+  <nombre_apellido> Pujui Sanchez </nombre_apellido>
+  <fecha_nacimiento>1978-10-24</fecha_nacimiento>
+  <direccion>Constitucion 432</direccion>
+  <telefono>35866678</telefono>
+  <puntos_carnet>2</puntos_carnet>
+</persona>
+
+<persona>
+  <dni>32089472</dni>
+  <nombre_apellido> Hector Costeleta </nombre_apellido>
+  <fecha_nacimiento>1980-02-11</fecha_nacimiento>
+  <direccion>Buenos Aires 397</direccion>
+  <telefono>3544020336</telefono>
+  <puntos_carnet>15</puntos_carnet>
+</persona>
+
+<vehiculo>
+  <nro_patente>AA-101-CF</nro_patente>
+  <tipo>camioneta</tipo>
+  <marca>ford</marca>
+  <modelo>2015</modelo>
+  <año>2015</año>
+</vehiculo>
+
+<vehiculo>
+  <nro_patente>CB-504-AC</nro_patente>
+  <tipo>auto</tipo>
+  <marca>toyota</marca>
+  <modelo>2016</modelo>
+  <año>2016</año>
+</vehiculo>
+
+<propietario>
+  <nro_patente>CB-504-AC</nro_patente>
+  <dni>40897842</dni>
+</propietario>
+
+<propietario>
+  <nro_patente>AA-101-CF</nro_patente>
+  <dni>32089472</dni>
+</propietario>
+
+               
+</ejercicio1>

@@ -1,0 +1,163 @@
+<!-- 
+Dado el esquema
+
+Vehículo (#patente, tipo,marca, modelo, año)
+
+Propietario (#patente, dni) 
+-#pat clave foránea a Vehiculo
+-Dni clave foránea a Persona
+
+Infracción (codigo, descripción, valor)
+
+Multa (#multa, #patente, código, dni, hora, fecha, lugar)
+
+-Código clave foránea a Infracción
+-#patente clave foránea a Vehículo
+-Dni clave foránea a Persona
+
+Persona(dni, nombre_apellido, fecha_nacimiento, dirección, teléfono, puntos_carnet) -->
+
+
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <xsd:element name="ejercicio1">
+
+    <xsd:complexType>   	
+     <xsd:sequence>
+
+     	<!-- Vehículo (#patente, tipo,marca, modelo, año) -->
+        <xsd:element name="vehiculo" minOccurs="0" maxOccurs="unbounded">
+            <xsd:complexType>
+               <xsd:sequence>
+                   <xsd:element name="#patente"	 type="xsd:string"/>
+                   <xsd:element name="tipo"    	 type="xsd:string"/>
+                   <xsd:element name="marca"     type="xsd:string"/>
+                   <xsd:element name="modelo"    type="xsd:string"/>
+                   <xsd:element name="año"       type="xsd:integer"/>
+               </xsd:sequence>
+            </xsd:complexType>
+       </xsd:element>
+
+
+		<!-- Propietario (#patente, dni)  -->
+        <xsd:element name="propietario" minOccurs="0" maxOccurs="unbounded">
+              <xsd:complexType>
+                 <xsd:sequence>
+                     <xsd:element name="#patente"	 type="xsd:string"/>
+                     <xsd:element name="dni"     	 type="xsd:string"/>
+                 </xsd:sequence>
+              </xsd:complexType>
+       </xsd:element>
+
+
+       <!-- Infracción (codigo, descripción, valor) -->
+       <xsd:element name="infraccion" minOccurs="0" maxOccurs="unbounded">
+              <xsd:complexType>
+                 <xsd:sequence>
+                     <xsd:element name="codigo"	 		type="xsd:string"/>
+                     <xsd:element name="descripcion"    type="xsd:string"/>
+                     <xsd:element name="valor"    		type="xsd:decimal"/>
+                 </xsd:sequence>
+              </xsd:complexType>
+        </xsd:element>
+
+
+        <!-- Multa (#multa, #patente, código, dni, hora, fecha, lugar) -->
+       <xsd:element name="multa" minOccurs="0" maxOccurs="unbounded">
+              <xsd:complexType>
+                 <xsd:sequence>
+                     <xsd:element name="#multa"	 	type="xsd:string"/>
+                     <xsd:element name="#patente"   type="xsd:string"/>
+                     <xsd:element name="codigo"    	type="xsd:decimal"/>
+                     <xsd:element name="dni"    	type="xsd:decimal"/>
+                     <xsd:element name="hora"    	type="xsd:time"/>
+                     <xsd:element name="fecha"    	type="xsd:date"/>
+                     <xsd:element name="lugar"    	type="xsd:string"/>
+                 </xsd:sequence>
+              </xsd:complexType>
+        </xsd:element>
+
+
+       <!-- Persona(dni, nombre_apellido, fecha_nacimiento, dirección, teléfono, puntos_carnet) -->
+       <xsd:element name="persona" minOccurs="0" maxOccurs="unbounded">
+              <xsd:complexType>
+                 <xsd:sequence>
+                     <xsd:element name="dni"	 			type="xsd:string"/>
+                     <xsd:element name="nombre_apellido"    type="xsd:string"/>
+                     <xsd:element name="fecha_nacimiento"   type="xsd:date"/>
+                     <xsd:element name="dirección"    		type="xsd:string"/>
+                     <xsd:element name="telefono"    		type="xsd:integer"/>
+                     <xsd:element name="puntos_carnet"    	type="xsd:integer"/>
+                 </xsd:sequence>
+              </xsd:complexType>
+        </xsd:element>
+
+    </xsd:sequence>
+  </xsd:complexType>
+
+  	<!-- Primary Keys -->
+    <xsd:key name = "claveVehiculo" >
+     <xsd:selector xpath = "vehiculo"/>
+     <xsd:field xpath = "#patente"/>
+    </xsd:key>
+
+    <xsd:key name = "clavePropietario" >
+       <xsd:selector xpath = "propietario"/>
+       <xsd:field xpath = "#patente"/>
+       <xsd:field xpath = "dni"/>
+    </xsd:key>
+
+    <xsd:key name = "claveInfraccion" >
+     <xsd:selector xpath = "infraccion"/>
+     <xsd:field xpath = "codigo"/>
+    </xsd:key>
+
+    <xsd:key name = "claveMulta" >
+     <xsd:selector xpath = "multa"/>
+     <xsd:field xpath = "#multa"/>
+    </xsd:key>
+
+    <xsd:key name = "clavePersona" >
+     <xsd:selector xpath = "persona"/>
+     <xsd:field xpath = "dni"/>
+    </xsd:key>
+
+
+
+    <!-- Propietario:
+    	 -#pat clave foránea a Vehiculo
+    	 -Dni clave foránea a Persona -->
+    <xsd:keyref name = "FK_Propietario_Vehiculo"  refer = "claveVehiculo">
+     <xsd:selector xpath = "propietario"/>
+     <xsd:field xpath = "#pat"/>
+    </xsd:keyref>
+
+    <xsd:keyref name = "FK_Propietario_Persona"  refer = "clavePersona">
+     <xsd:selector xpath = "propietario"/>
+     <xsd:field xpath = "dni"/>
+    </xsd:keyref>
+
+
+	<!-- Multa:
+		 Código clave foránea a Infracción
+		 #patente clave foránea a Vehículo
+		 Dni clave foránea a Persona -->
+    <xsd:keyref name = "FK_Multa_Infraccion"  refer = "claveInfraccion">
+     <xsd:selector xpath = "multa"/>
+     <xsd:field xpath = "codigo"/>
+    </xsd:keyref>
+
+    <xsd:keyref name = "FK_Multa_Vehiculo"  refer = "claveVehiculo">
+     <xsd:selector xpath = "multa"/>
+     <xsd:field xpath = "#patente"/>
+    </xsd:keyref>
+
+    <xsd:keyref name = "FK_Multa_Persona"  refer = "clavePersona">
+     <xsd:selector xpath = "multa"/>
+     <xsd:field xpath = "dni"/>
+    </xsd:keyref>
+
+  </xsd:element>
+
+</xsd:schema>

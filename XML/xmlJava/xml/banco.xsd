@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <xsd:element name="banco">
+    <xsd:complexType>
+     <xsd:sequence>
+        <xsd:element name="cuenta" minOccurs="0" maxOccurs="unbounded">
+            <xsd:complexType>
+               <xsd:sequence>
+                   <xsd:element name="nro_cuenta"	 type="xsd:string"/>
+                   <xsd:element name="sucursal"    	 type="xsd:string"/>
+                   <xsd:element name="saldo"         	 type="xsd:decimal"/>
+               </xsd:sequence>
+            </xsd:complexType>
+       </xsd:element>
+
+
+
+        <xsd:element name="cliente" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:complexType>
+                     <xsd:sequence>
+                         <xsd:element name="nombre_cliente"	 type="xsd:string"/>
+                         <xsd:element name="calle"     	 type="xsd:string"/>
+                         <xsd:element name="ciudad"       	 type="xsd:string"/>
+                     </xsd:sequence>
+                  </xsd:complexType>
+
+       </xsd:element>
+
+       <xsd:element name="titular" minOccurs="0" maxOccurs="unbounded">
+              <xsd:complexType>
+                 <xsd:sequence>
+                     <xsd:element name="nro_cuenta"	 type="xsd:string"/>
+                     <xsd:element name="nombre_cliente"     	 type="xsd:string"/>
+                 </xsd:sequence>
+              </xsd:complexType>
+
+
+        </xsd:element>
+
+
+
+    </xsd:sequence>
+
+   </xsd:complexType>
+    <xsd:key name = "claveCuenta" >
+     <xsd:selector xpath = "cuenta"/>
+     <xsd:field xpath = "nro_cuenta"/>
+    </xsd:key>
+    <xsd:key name = "claveCliente" >
+       <xsd:selector xpath = "cliente"/>
+       <xsd:field xpath = "nombre_cliente"/>
+    </xsd:key>
+
+    <xsd:keyref name = "claveForaneaTitularACuenta"  refer = "claveCuenta">
+     <xsd:selector xpath = "titular"/>
+     <xsd:field xpath = "nro_cuenta"/>
+    </xsd:keyref>
+
+    <xsd:keyref name = "claveForaneaTitularACliente"  refer = "claveCliente">
+     <xsd:selector xpath = "titular"/>
+     <xsd:field xpath = "nombre_cliente"/>
+    </xsd:keyref>
+
+    <xsd:key name = "claveTitular" >
+       <xsd:selector xpath = "titular"/>
+       <xsd:field xpath = "nombre_cliente"/>
+       <xsd:field xpath = "nro_cuenta"/>
+    </xsd:key>
+
+
+
+  </xsd:element>
+
+</xsd:schema>
+
+
+
+
